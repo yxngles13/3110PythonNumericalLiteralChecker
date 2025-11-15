@@ -15,13 +15,13 @@ def is_hexint(s):
     for char in s:
         if state == 'q1':
             ##check if character is a digit 0-9, a-f, A-F
-            if ('0' <= char <= '9') or ('a' <= char <= 'f') or ('A' <= char <= 'F'):
+            if is_hexdigit(char):
                 state = 'q2'
             else:
                 return False
         elif state == 'q2':
             ##check if character is a digit 0-9, a-f, A-F
-            if ('0' <= char <= '9') or ('a' <= char <= 'f') or ('A' <= char <= 'F'):
+            if is_hexdigit(char):
                 state = 'q2'
             ## check if character is underscore, if so transition to q3
             elif char =='_':
@@ -30,7 +30,7 @@ def is_hexint(s):
                 return False
             ## after underscore, must have digit 0-9, a-f, A-F, transition back to q2
         elif state == 'q3':
-            if ('0' <= char <= '9') or ('a' <= char <= 'f') or ('A' <= char <= 'F'):
+            if is_hexdigit(char):
                 state = 'q2'
             else:
                 return False
@@ -40,3 +40,7 @@ def is_hexint(s):
         return True
     else:
         return False
+    
+def is_hexdigit(c):
+    return ('0' <= c <= '9') or ('a' <= c <= 'f') or ('A' <= c <= 'F')
+
