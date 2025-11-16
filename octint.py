@@ -27,36 +27,26 @@ def is_octint(s):
                 state = 'q3'
             else:
                 return False
-        
+
         elif state == 'q3':
-            #third state: check if character is a digit 0-7
+            ##fourth state: check if character is a digit 0-7
             if '0' <= char <= '7':
-                state = 'q4'
-            #another branch to check if character is underscore, if so transition to q5
+                state = 'q3'
+            ##check if character is underscore, if so transition to q5
             elif char =='_':
-                state = 'q5'
+                state = 'q4'
             else:
                 return False
             
         elif state == 'q4':
-            ##fourth state: check if character is a digit 0-7
-            if '0' <= char <= '7':
-                state = 'q4'
-            ##check if character is underscore, if so transition to q5
-            elif char =='_':
-                state = 'q5'
-            else:
-                return False
-            
-        elif state == 'q5':
             ## after underscore, must have digit 0-7, transition back to q4
             if '0' <= char <= '7':
-                state = 'q4'
+                state = 'q3'
             else:
                 return False
             
     ##if we end in state q4, return True
-    if state == 'q4':
+    if state == 'q3':
         return True
     else:
         return False
