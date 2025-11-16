@@ -4,6 +4,7 @@
 from decint import is_decint
 from hexint import is_hexint
 from octint import is_octint
+from floating import is_floatingpoint
 
 #main function
 
@@ -20,10 +21,10 @@ def main():
             break
         elif choice == '1':
             input_str = input("Enter string to check:")
-            if is_decint(input_str) or is_octint(input_str) or is_hexint(input_str):
+            if is_decint(input_str) or is_octint(input_str) or is_hexint(input_str) or is_floatingpoint(input_str):
                 print("\nAccept")
             else:
-                print("\nReject")
+                print("\nReject")            
         
 
 if __name__ == "__main__":
