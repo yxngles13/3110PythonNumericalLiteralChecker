@@ -1,29 +1,25 @@
 #include input file and output file
 #merge dectint, octint, hexint into this file
 
-#from decint.py import def is_decint
-#from hextint.py import def is_hexint
-#from octint.py import def is_octint
+from decint import is_decint
+from hexint import is_hexint
+from octint import is_octint
 
 #main function
 
 def main():
+    print("Enter 1/2")
+    print("1. Enter String to Check")
+    print("2. Check Test File")
 
-#open input file
+    choice = input("Enter choice: ")
 
-#(input file testcases is in format: 1234 accept)
-#read first string on line (test case)
-#check if the string is hexint or octint (check string for 0x/0o prefix)
-    #if hextint, call is_hexint function
-    #if octint, call is_octint function
-    #if neither, call is_decint function
+    if choice == '1':
+        input_str = input("Enter string to check:")
+        if is_decint(input_str) or is_octint(input_str) or is_hexint(input_str):
+            print("Accept")
+        else:
+            print("Reject")
 
-#based on if the functions give true=accept, false=reject
-#write to output file the same input (1234 accept) and append actual result (accept/reject)
-        #should look like (1234 accept accept)
-
-#if both expected and actual results are accept or both are reject, add "PASS" to end of line
-        #should look like (1234 accept accept PASS)
-        #else add "FAIL" to end of line
-
-
+if "__name__" == "__main__":
+    main()
