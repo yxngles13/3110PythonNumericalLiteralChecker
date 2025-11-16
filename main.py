@@ -3,6 +3,11 @@ from hexint import is_hexint
 from octint import is_octint
 from floating import is_floatingpoint
 
+def check_numbers(s):
+    if is_decint(s) or is_octint(s) or is_hexint(s) or is_floatingpoint(s):
+            print("\nAccept\n")
+    else:
+            print("\nReject\n")
 
 def main():
     while True:
@@ -18,10 +23,8 @@ def main():
 
         elif choice == '1':
             input_str = input("Enter string to check: ").strip()
-            if is_decint(input_str) or is_octint(input_str) or is_hexint(input_str) or is_floatingpoint(input_str):
-                print("\nAccept\n")
-            else:
-                print("\nReject\n")
+            check_numbers(input_str)
+            
 
         elif choice == '2':
             input_file = "in_ans.txt"
@@ -32,10 +35,19 @@ def main():
             
             with open(output_file, "w") as fileout:
                 fileout.write("Input        Expected        Actual          Result\n")
+                for line in lines:
+                    parts = line.split()
+                    
+                    number = parts[0]
+                    expected = parts[1]
 
-                                
+                    actual = check_numbers(number)
+                    results = "PASS" if actual == expected else "FAIL"
 
-
+                    fileout.write(f"{number}        {expected}         {actual}         {results}")
+            
+            print("Testing Finished.")
+                  
 
         else:
             print("\nInvalid choice. Please try again.\n")
