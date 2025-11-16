@@ -1,0 +1,6 @@
+1234 accept
+0xFF accept
+0x1G reject
+0o77 accept
+0o99 reject
+abcd reject

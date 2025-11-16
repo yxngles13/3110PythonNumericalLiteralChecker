@@ -1,6 +1,8 @@
 #include input file and output file
 #merge dectint, octint, hexint into this file
-
+from decint import is_decint
+from hexint import is_hexint
+from octint import is_octint
 #from decint.py import def is_decint
 #from hextint.py import def is_hexint
 #from octint.py import def is_octint
@@ -8,25 +10,23 @@
 #main function
 
 def main():
+    print("This is a program that recognizes Decinteger/Octinteger/Hexinteger.")
+    print("1. Test your own text.")
+    print("2. Batch Test from File")
+    print("Enter 1/2 to choose the file.")
+    choice = input().strip()
 
-#open input file
+    if choice == "1":
+        user_input = input("Enter a string.")
+        if is_decint(user_input) or is_hexint(user_input) or is_octint(user_input):
+            print("Accept")
+        else:
+            print("Reject")
 
-#(input file testcases is in format: 1234 accept)
-#read first string on line (test case)
-#check if the string is hexint or octint (check string for 0x/0o prefix)
-    #if hextint, call is_hexint function
-    #if octint, call is_octint function
-    #if neither, call is_decint function
-
-#based on if the functions give true=accept, false=reject
-#write to output file the same input (1234 accept) and append actual result (accept/reject)
-        #should look like (1234 accept accept)
-
-#if both expected and actual results are accept or both are reject, add "PASS" to end of line
-        #should look like (1234 accept accept PASS)
-        #else add "FAIL" to end of line
+    elif choice == "2":
+        print("Run text file.")
 
 
 
-
-#
+if __name__ == "__main__":
+    main()
