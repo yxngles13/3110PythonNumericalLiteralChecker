@@ -13,34 +13,45 @@ def is_hexint(s):
 
     ##loop through each character in the string
     for char in s:
+
         if state == 'q1':
-            ##check if character is a digit 0-9, a-f, A-F
-            if is_hexdigit(char):
+            #first state must be 0
+            if char == '0':
                 state = 'q2'
             else:
                 return False
+        
         elif state == 'q2':
-            ##check if character is a digit 0-9, a-f, A-F
-            if is_hexdigit(char):
-                state = 'q2'
-            ## check if character is underscore, if so transition to q3
-            elif char =='_':
+            #second state must be 'x' or 'X'
+            if char == 'x' or char == 'X':
                 state = 'q3'
             else:
                 return False
-            ## after underscore, must have digit 0-9, a-f, A-F, transition back to q2
+            
         elif state == 'q3':
+            ##check if character is a digit 0-9, a-f, A-F, if so loop
             if is_hexdigit(char):
-                state = 'q2'
+                state = 'q3'
+            ## check if character is underscore, if so transition to q4
+            elif char =='_':
+                state = 'q4'
             else:
                 return False
             
-    ##if we end in state q2, return True
-    if state == 'q2':
+            ## after underscore, must have digit 0-9, a-f, A-F, transition back to q3
+        elif state == 'q4':
+            if is_hexdigit(char):
+                state = 'q3'
+            else:
+                return False
+            
+    ##if we end in accepting state q3, return True
+    if state == 'q3':
         return True
     else:
         return False
-    
+
+#must have digit 0-9, a-f, A-F
 def is_hexdigit(c):
     return ('0' <= c <= '9') or ('a' <= c <= 'f') or ('A' <= c <= 'F')
 
