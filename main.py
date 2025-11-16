@@ -8,18 +8,23 @@ from octint import is_octint
 #main function
 
 def main():
-    print("Enter 1/2")
-    print("1. Enter String to Check")
-    print("2. Check Test File")
+    while True:
+        print("---------Welcome to Python Numerical Literal Checker:---------")
+        print("1. Enter String to Check")
+        print("2. Check Test File")
+        print("Enter q to quit")
+        choice = input("Enter choice: ")
 
-    choice = input("Enter choice: ")
+        if choice == 'q':
+            print("\nEnd of program.")
+            break
+        elif choice == '1':
+            input_str = input("Enter string to check:")
+            if is_decint(input_str) or is_octint(input_str) or is_hexint(input_str):
+                print("\nAccept")
+            else:
+                print("\nReject")
+        
 
-    if choice == '1':
-        input_str = input("Enter string to check:")
-        if is_decint(input_str) or is_octint(input_str) or is_hexint(input_str):
-            print("Accept")
-        else:
-            print("Reject")
-
-if "__name__" == "__main__":
+if __name__ == "__main__":
     main()
