@@ -24,10 +24,17 @@ def main():
                 print("\nReject\n")
 
         elif choice == '2':
-            input_file = "in.txt"
-            output_file = "in_ans.txt"
+            input_file = "in_ans.txt"
+            output_file = "out.txt"
 
+            with open(input_file, "r") as filein:
+                lines = [line.strip() for line in filein if line.strip()]
             
+            with open(output_file, "w") as fileout:
+                fileout.write("Input        Expected        Actual          Result\n")
+
+                                
+
 
 
         else:

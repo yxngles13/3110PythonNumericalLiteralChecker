@@ -1,0 +1,21 @@
+0	Accept
+-123	Accept
+2147483647	Accept
+01	Accept
+1_000_000	Reject
+07	Accept
+0123	Accept
+08	Accept
+-077	Accept
+0x1A	Accept
+0xG1	Reject
+0x0	Accept
+0XFF	Accept
+3.14	Accept
+.5	Accept
+1e10	Accept
+5E-2	Accept
+12e	Reject
+1.2.3	Reject
+0x1p10	Reject
+	
