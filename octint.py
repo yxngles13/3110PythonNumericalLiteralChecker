@@ -15,38 +15,50 @@ def is_octint(s):
     for char in s:
 
         if state == 'q1':
-            #first state must be 0
+            #q1 transition q2 if first character is 0
             if char == '0':
                 state = 'q2'
             else:
                 return False
             
         elif state == 'q2':
-            #second state must be 'o' or 'O'
+            #q2 transition q3 if second character is 'o' or 'O'
             if char == 'o' or char == 'O':
                 state = 'q3'
             else:
                 return False
 
         elif state == 'q3':
-            #fourth state: check if character is a digit 0-7, if so loop
+            #fourth state: check if character is a digit 0-7, transition to q4
             if '0' <= char <= '7':
-                state = 'q3'
-            ##check if character is underscore, if so transition to q4
+                state = 'q4'
+            ##check if character is underscore, if so transition to q5
             elif char =='_':
+                state = 'q5'
+            else:
+                return False
+        #q3 and q4 look the same but this prevents accepting 0o/0O
+        
+        #q4 is accept state
+        elif state == 'q4':
+            ##check if character is a digit 0-7, if so loop
+            if '0' <= char <= '7':
+                state = 'q4'
+            ## check if character is underscore, if so transition to q5
+            elif char =='_':
+                state = 'q5'
+            else:
+                return False
+            
+        elif state == 'q5':
+            ## after underscore, must have digit 0-7, transition back to q3
+            if '0' <= char <= '7':
                 state = 'q4'
             else:
                 return False
             
-        elif state == 'q4':
-            ## after underscore, must have digit 0-7, transition back to q3
-            if '0' <= char <= '7':
-                state = 'q3'
-            else:
-                return False
-            
-    ##if we end in accepting state q3, return True
-    if state == 'q3':
+    ##if we end in accepting state q4, return True
+    if state == 'q4':
         return True
     else:
         return False
