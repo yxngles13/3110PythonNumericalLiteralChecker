@@ -10,7 +10,7 @@ A Python implementation of **Finite State Machines (FSMs)** that validate **oct 
 | Full Name | GitHub Username | Tasks Completed | Extra Credit |
 |------------|-----------------|-----------------|---------------|
 |**Yong Thu La Wong**| @yxngles13 | Constructed all the NFAs and implemented main() function | Worked on all extra credit portion|
-| **Josephine Villar** || Implemented hexinteger, decinteger, and octinteger functions | Reviewed all the NFAs and double checked them |
+| **Josephine Villar** | @jo-seashell| Implemented hexinteger, decinteger, and octinteger functions | Reviewed all the NFAs and double checked them |
 
 
 ---
