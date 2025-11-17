@@ -5,38 +5,43 @@
 #can use for/while, if else, <= ‘0-9’
 
 def is_decint(s):
-
-    ##if the length of input string is 0, return False
     if len(s) == 0:
         return False
-    
-    state = 'q1'
 
-    ##loop through each character in the string
-    for char in s:
+    state = 'q1'  # start
+
+    for i, char in enumerate(s):
         if state == 'q1':
-            ##check if character is a digit 1-9
-            if '1' <= char <= '9':
+            if char == '0':
+                # "0" alone is fine, but anything else after it is invalid
+                state = 'q0'
+            elif '1' <= char <= '9':
                 state = 'q2'
             else:
                 return False
+
+        elif state == 'q0':
+            # if we started with 0, no more characters allowed
+            return False
+
         elif state == 'q2':
-            ##check if character is a digit
             if '0' <= char <= '9':
                 state = 'q2'
-            elif char =='_':
+            elif char == '_':
+                # underscore must be followed by a digit
+                # reject trailing underscores immediately
+                if i == len(s) - 1:
+                    return False
                 state = 'q3'
             else:
                 return False
+
         elif state == 'q3':
+            # must have a digit after underscore
             if '0' <= char <= '9':
                 state = 'q2'
             else:
                 return False
-            
-    ##if we end in state q2, return True
-    if state == 'q2':
-        return True
-    else:
-        return False
-    
+
+    # Accepting states
+    return state in ('q0', 'q2')

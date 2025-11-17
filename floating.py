@@ -1,61 +1,85 @@
-def isfloatingpoint(s):
+def is_floatingpoint(s):
+  
     if len(s) == 0:
         return False
-    state = 'q1'
-
+    
+    state = 'q0'
+    
     for char in s:
-        if state == 'q1':
-            #first state must be +, - or nothing
-            if char == '+' or char == '-':
+        if state == 'q0':
+            if char in ['+', '-']:
+                state = 'q1'
+            elif char == '0':
                 state = 'q2'
+            elif '1' <= char <= '9':
+                state = 'q3'
+            elif char == '.':
+                state = 'q4'
             else:
                 return False
+                
+        elif state == 'q1':
+            if char == '0':
+                state = 'q2'
+            elif '1' <= char <= '9':
+                state = 'q3'
+            elif char == '.':
+                state = 'q4'
+            else:
+                return False
+                
         elif state == 'q2':
             if char == '.':
-                state = 'q3'
-            elif is_floatingpoint(char):
-                state = 'q4'
-            else:
-                return False
-        elif state == 'q3':
-            if is_floatingpoint(char):
                 state = 'q5'
-            else:
-                return False
-        elif state == 'q4':
-            if char == '.':
-                state = 'q3'
-            elif is_floatingpoint(char):
-                state = 'q4'
-            else:
-                return False
-        elif state == 'q5':
-            if is_floatingpoint(char):
-                state = 'q5'
-            elif char == 'e' or char =='E':
+            elif char in ['e', 'E']:
                 state = 'q6'
-            else: False
+            else:
+                return False
+                
+        elif state == 'q3':
+            if '0' <= char <= '9':
+                state = 'q3'
+            elif char == '.':
+                state = 'q5'
+            elif char in ['e', 'E']:
+                state = 'q6'
+            else:
+                return False
+                
+        elif state == 'q4':
+            if '0' <= char <= '9':
+                state = 'q4'
+            else:
+                return False
+                
+        elif state == 'q5':
+            if '0' <= char <= '9':
+                state = 'q5'
+            elif char in ['e', 'E']:
+                state = 'q6'
+            else:
+                return False
+                
         elif state == 'q6':
-            if char == '+' or char == '-':
+            if char in ['+', '-']:
                 state = 'q7'
-            elif is_floatingpoint(char):
+            elif '0' <= char <= '9':
                 state = 'q8'
             else:
                 return False
+                
         elif state == 'q7':
-            if is_floatingpoint(char):
+            if '0' <= char <= '9':
                 state = 'q8'
             else:
                 return False
+                
         elif state == 'q8':
-            if is_floatingpoint(char):
+            if '0' <= char <= '9':
                 state = 'q8'
             else:
                 return False
-    if state == 'q3' or state == 'q5' or state == 'q4' or state == 'q8':
-        return True 
-    else:
-        return False 
-
-def is_floatingpoint(c):
-    return ('0' <= c <= '9')
+        else:
+            return False
+    
+    return state in ['q2', 'q3', 'q4', 'q5', 'q8']
