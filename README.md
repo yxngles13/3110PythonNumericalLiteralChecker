@@ -46,7 +46,7 @@ A Python implementation of **Finite State Machines (FSMs)** that validate **oct 
 | Decimal | none | `123`, `0` | 10 | `is_decint()` |
 | Octal | `0o` or `0O` | `0o755` | 8 | `is_octint()` |
 | Hexadecimal | `0x` or `0X` | `0xFF` | 16 | `is_hexint()` |
-| Floating-point | optional sign, `.`, `e` | `-3.14e2` | 10 | `isfloatingpoint()` |
+| Floating-point | optional sign, `.`, `e` | `-3.14e2` | 10 | `is_floatingpoint()` |
 
 ---
 
